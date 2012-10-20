@@ -1,7 +1,12 @@
 class gdash::vhost {
 
+  $service = $::operatingsystem ? {
+    'Debian' => 'apache2',
+    'Redhat' => 'httpd',
+  }
+
   file {
-    "/etc/httpd/conf.d/gdash.conf":
+    "/etc/${service}/conf.d/gdash.conf":
       ensure  => 'file',
       group   => '0',
       mode    => '0644',
