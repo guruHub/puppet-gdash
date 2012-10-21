@@ -16,7 +16,7 @@
 # [Remember: No empty lines between comments and class definition]
 class gdash (
   $gdashroot = "/var/www/gdash/",
-  $graphitehost='127.0.0.1',
+  $graphitehost = '127.0.0.1',
 )
 {
 
@@ -65,11 +65,11 @@ class gdash (
     }
 
     file {
-      "${gdashroot}/config/config.ru":
+      "${gdashroot}/config.ru":
         source   => 'puppet:///modules/gdash/config.ru', 
         group   => 'www-data',
         owner   => 'www-data',
-        require => File["${gdashroot}/config"]
+        require => File["${gdashroot}"]
     }
 
     file {
