@@ -29,7 +29,7 @@ class gdash (
         provider => gem,
   }
 
-  define setup($gashroot, $graphitehost){
+  define setup($gdashroot, $graphitehost){
 
     file {
       "${gdashroot}":
