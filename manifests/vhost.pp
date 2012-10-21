@@ -6,7 +6,7 @@ class gdash::vhost($vhost = "gdash.${::fqdn}", $document_root = '/var/www/gdash/
   }
 
   file {
-    "/etc/${service}/conf.d/gdash.conf":
+    "/etc/${service}/conf.d/${vhost}.conf":
       ensure  => 'file',
       group   => 'www-data',
       mode    => '0644',
