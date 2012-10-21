@@ -58,7 +58,7 @@ class gdash (
     # to enable bundling in the future
     file {
       "${gdashroot}/Gemfile":
-        soure   => 'puppet:///modules/gdash/Gemfile', 
+        source   => 'puppet:///modules/gdash/Gemfile', 
         group   => 'www-data',
         owner   => 'www-data',
         require => File["${gdashroot}/config"]
@@ -66,7 +66,7 @@ class gdash (
 
     file {
       "${gdashroot}/config/config.ru":
-        soure   => 'puppet:///modules/gdash/config.ru', 
+        source   => 'puppet:///modules/gdash/config.ru', 
         group   => 'www-data',
         owner   => 'www-data',
         require => File["${gdashroot}/config"]
