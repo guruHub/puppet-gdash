@@ -3,12 +3,12 @@ Listen 80
 
     RackAutoDetect On
     ServerName <%= vhost %> 
-    DocumentRoot <%= gdashroot %>
+    DocumentRoot <%= document_root %>
 
     ErrorLog 	/var/log/<%= service %>/errorlog-gdash
     CustomLog 	/var/log/<%= service %>/accesslog-gdash combined
   
-    <Directory <%= gdashroot %> >
+    <Directory <%= document_root %> >
         Options None
         AllowOverride None
         Order allow,deny
