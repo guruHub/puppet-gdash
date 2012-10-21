@@ -1,55 +1,89 @@
 # Class: gdash
 #
-# This module manages gdash
+# This module manages gdash 
+#
+# Gdash will be installed through rubygems 
 #
 # Parameters:
-#
-# Actions:
-#
-# Requires:
+# 
+# vhost: apache/nginx vhostname, usefull to have multiple gdash installs
+# gdashroot: install path
 #
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
 class gdash (
-  $graphitehost='127.0.0.1'
+  $gdashroot = "/var/www/gdash/",
+  $graphitehost='127.0.0.1',
 )
 {
-  $gdashroot = '/usr/local/gdash/'
+
   package {
-    'rubygem-sinatra':
-      ensure => '1.3.2-1'
-  }
-  package {
-    'rubygem-bundler':
-      ensure => present
-  }
-  package {
-    'rubygem-tilt':
-      ensure => present
-  }
-  package {
-    'rubygem-rack':
-      ensure => present
-  }
-  package {
-    'rubygem-rack-protection':
-      ensure => present
+			'rubygems':
+        ensure => 'installed'
+  } -> package {
+      'gdash': 
+        ensure => present,
+        provider => gem,
   }
 
+  define setup($gashroot, $graphitehost){
 
+    file {
+      "${gdashroot}":
+        ensure  => directory,
+        group   => 'www-data',
+        owner   => 'www-data',
+        require => Package['gdash'],
+    }
 
+    file {
+      "${gdashroot}/config":
+        ensure  => directory,
+        group   => 'www-data',
+        owner   => 'www-data',
+        require => Package['gdash'],
+    }
+     
+    file {
+      "${gdashroot}/config/gdash.yaml":
+        content => template('gdash/gdash.yaml.erb'),
+        group   => 'www-data',
+        owner   => 'www-data',
+        require => File["${gdashroot}/config"]
+    }
 
-  package {"gdash": ensure => present }
+    # to enable bundling in the future
+    file {
+      "${gdashroot}/Gemfile":
+        soure   => 'puppet:///modules/gdash/Gemfile', 
+        group   => 'www-data',
+        owner   => 'www-data',
+        require => File["${gdashroot}/config"]
+    }
 
-  file {
-    "${gdashroot}/config/gdash.yaml":
-      content => template('gdash/gdash.yaml.erb'),
-      group   => '0',
-      owner   => '0',
-      require => Package['gdash'],
+    file {
+      "${gdashroot}/config/config.ru":
+        soure   => 'puppet:///modules/gdash/config.ru', 
+        group   => 'www-data',
+        owner   => 'www-data',
+        require => File["${gdashroot}/config"]
+    }
+
+    file {
+      "${gdashroot}/config/dashboards":
+        ensure  => present,
+        group   => 'www-data',
+        owner   => 'www-data',
+        require => File["${gdashroot}/config"]
+    }
+
   }
 
+  gdash::setup { 'default':
+    gdashroot    => $gdashroot,
+    graphitehost => $graphitehost
+  }
 
 }
 
