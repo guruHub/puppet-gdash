@@ -81,15 +81,9 @@ class gdash (
     }
 
   }
-  /*
   gdash::setup { 'default':
     gdashroot    => $gdashroot,
     graphitehost => $graphitehost,
-  }
-  */
-  gdash::setup { 'default':
-    gdashroot    => '/tmp/x',
-    graphitehost => '127.0.0.1',
   }
 }
 
