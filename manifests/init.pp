@@ -73,11 +73,11 @@ class gdash (
     }
 
     file {
-      "${gdashroot}/config/dashboards":
+      "${gdashroot}/graph_templates":
         ensure  => present,
         group   => 'www-data',
         owner   => 'www-data',
-        require => File["${gdashroot}/config"]
+        require => File["${gdashroot}"]
     }
 
   }
