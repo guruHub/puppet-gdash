@@ -1,0 +1,20 @@
+Listen 80
+<VirtualHost *:80>
+
+    RackAutoDetect On
+    ServerName <%= vhost %> 
+    DocumentRoot <%= gashroot %>
+
+    ErrorLog 	/var/log/<%= service %>/errorlog-gdash
+    CustomLog 	/var/log/<%= service %>/accesslog-gdash combined
+  
+    <Directory <%= gashroot %> >
+        Options None
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    </Directory>
+
+</VirtualHost>
+
+

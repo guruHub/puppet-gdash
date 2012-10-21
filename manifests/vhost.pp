@@ -8,10 +8,10 @@ class gdash::vhost($vhost = "gdash.${::fqdn}", $document_root = '/var/www/gdash/
   file {
     "/etc/${service}/conf.d/gdash.conf":
       ensure  => 'file',
-      group   => '0',
+      group   => 'www-data',
       mode    => '0644',
-      owner   => '0',
-      source => 'puppet:///modules/gdash/gdash.conf',
+      owner   => 'www-data',
+      content => template('gdash/apache.vhost.conf.erb'),
       notify => Service["${service}"];
   }
 }
