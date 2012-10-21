@@ -12,6 +12,6 @@ class gdash::vhost {
       mode    => '0644',
       owner   => '0',
       source => 'puppet:///modules/gdash/gdash.conf',
-      notify => Service['httpd'];
+      notify => Service["${service}"];
   }
 }
