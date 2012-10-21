@@ -11,6 +11,8 @@
 #
 # Sample Usage:
 #
+# Install process based on https://github.com/ripienaar/gdash/issues/45#issuecomment-6943135
+#
 # [Remember: No empty lines between comments and class definition]
 class gdash (
   $gdashroot = "/var/www/gdash/",
