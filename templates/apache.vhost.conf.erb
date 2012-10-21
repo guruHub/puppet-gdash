@@ -5,8 +5,8 @@ Listen 80
     ServerName <%= vhost %> 
     DocumentRoot <%= document_root %>
 
-    ErrorLog 	/var/log/<%= service %>/errorlog-gdash
-    CustomLog 	/var/log/<%= service %>/accesslog-gdash combined
+    ErrorLog 	/var/log/<%= service %>/<%= vhost %>.error.log
+    CustomLog 	/var/log/<%= service %>/<%= vhost %>.access.log combined
   
     <Directory <%= document_root %> >
         Options None
