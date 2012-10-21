@@ -74,7 +74,7 @@ class gdash (
 
     file {
       "${gdashroot}/graph_templates":
-        ensure  => present,
+        ensure  => directory,
         group   => 'www-data',
         owner   => 'www-data',
         require => File["${gdashroot}"]
