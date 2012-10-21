@@ -2,13 +2,13 @@
 
     RackAutoDetect On
     ServerName <%= vhost %> 
-    DocumentRoot <%= document_root %>
+    DocumentRoot <%= document_root %>/public
 
     ErrorLog 	/var/log/<%= service %>/<%= vhost %>.error.log
     CustomLog 	/var/log/<%= service %>/<%= vhost %>.access.log combined
   
     <Directory <%= document_root %> >
-        Options None
+        Options -MultiViews
         AllowOverride None
         Order allow,deny
         allow from all
