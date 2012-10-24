@@ -1,3 +1,5 @@
 gdash
 
-This is the gdash module.
+This is another gdash module.
+
+We install gdash using gem provider and support multiple installations 
