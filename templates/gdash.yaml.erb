@@ -5,13 +5,16 @@
 #:username: admin
 #:password: secret
 :options:
-  :title: My Dashboard
+  :title: <% gdash_title %>
   :prefix: ""
   :refresh_rate: 60
   :graph_columns: 2
   :graph_width: 500
   :graph_height: 250
   :whisper_dir: "/var/lib/carbon/whisper"
+<% if @overwrite_filters %>
+<%=  overwrite_filters %>
+<% else %>
   :interval_filters:
     - :label: Last Hour
       :from: -1hour
@@ -30,3 +33,4 @@
     - [ "-1day", "1 day" ]
     - [ "-1month", "1 month" ]
     - [ "-1year", "1 year" ]
+<% end $>

@@ -90,6 +90,8 @@ class gdash(
   gdash::setup { 'default':
     gdashroot    => $gdashroot,
     graphitehost => $graphitehost,
+    gdash_title  => $gdash_title,
+    overwrite_filters => $overwrite_filters
   }
 }
 
