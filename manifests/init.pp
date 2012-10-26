@@ -16,7 +16,9 @@
 # [Remember: No empty lines between comments and class definition]
 class gdash(
   $gdashroot = "/var/www/gdash/",
-  $graphitehost = '127.0.0.1'
+  $graphitehost = '127.0.0.1',
+  $gdash_title  = 'My Dashboard',
+  $overwrite_files = false
 ){
 
   package {
