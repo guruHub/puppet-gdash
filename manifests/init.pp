@@ -14,14 +14,13 @@
 # Install process based on https://github.com/ripienaar/gdash/issues/45#issuecomment-6943135
 #
 # [Remember: No empty lines between comments and class definition]
-class gdash (
+class gdash(
   $gdashroot = "/var/www/gdash/",
-  $graphitehost = '127.0.0.1',
-)
-{
+  $graphitehost = '127.0.0.1'
+){
 
   package {
-			'rubygems':
+	'rubygems':
         ensure => 'installed'
   } -> package {
       'gdash': 
@@ -29,7 +28,12 @@ class gdash (
         provider => gem,
   }
 
-  define setup($gdashroot, $graphitehost){
+  define setup (
+	$gdashroot, 
+	$graphitehost,
+	$gdash_title = "My Dashboard",
+	$overwrite_filters = false
+){
 
     file {
       "${gdashroot}":
