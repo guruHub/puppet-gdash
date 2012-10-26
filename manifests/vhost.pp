@@ -9,6 +9,15 @@ class gdash::vhost(
     'Redhat' => 'httpd',
   }
 
+  if $redirect_home_to {
+	exec { "${vhost}-check-modrewrite-enable" :
+		path => '/usr/bin/:/bin',
+		command => 'a2enmod rewrite && /etc/init.d/apache reload',
+		unless  => 'test -L /etc/apache2/mods-enabled/rewrite.load',
+		before  => File["/etc/${service}/conf.d/${vhost}.conf"]
+	}	
+  }
+
   file {
     "/etc/${service}/conf.d/${vhost}.conf":
       ensure  => 'file',
