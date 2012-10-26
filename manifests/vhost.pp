@@ -1,4 +1,8 @@
-class gdash::vhost($vhost = "gdash.${::fqdn}", $document_root = '/var/www/gdash/' ){
+class gdash::vhost(
+	$vhost = "gdash.${::fqdn}", 
+	$document_root = '/var/www/gdash/',
+	$redirect_home_to = false
+){
 
   $service = $::operatingsystem ? {
     'Debian' => 'apache2',

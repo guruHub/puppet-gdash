@@ -6,7 +6,11 @@
 
     ErrorLog 	/var/log/<%= service %>/<%= vhost %>.error.log
     CustomLog 	/var/log/<%= service %>/<%= vhost %>.access.log combined
-  
+
+<% if @redirect_home_to %>
+	RewriteEngine On
+	RewriteRule ^/$ http://<%= vhost %><%= redirect_home_to %> [R]
+<% end %>  
     <Directory <%= document_root %> >
         Options -MultiViews
         AllowOverride None
