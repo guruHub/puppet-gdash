@@ -18,7 +18,7 @@ class gdash(
   $gdashroot = "/var/www/gdash/",
   $graphitehost = '127.0.0.1',
   $gdash_title  = 'My Dashboard',
-  $overwrite_files = false
+  $overwrite_filters = false
 ){
 
   package {
