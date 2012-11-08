@@ -10,13 +10,19 @@ Installing Gdash
 
 ```puppet
 class { "::gdash" :
-  graphitehost => $graphitehost,
-  gdashroot    => $gdashroot,
-  gdash_title  => $gdash_title,
-  overwrite_filters => $overwrite_filters,
+  graphitehost => 'graphite.example.com',
+  gdashroot    => '/var/www/gdash/first',
 }
 ```
 
+Arguments Explained
+--------------------
+* graphitehost      = URL of graphite host
+* gdashroot         = Where to install gdash
+
+Optional args:
+* gdash_title       = Gdash title
+* overwrite_filters = If set it will be used instead of default filters provided by gdash. 
 
 Using it with Apache
 -------------------
@@ -36,6 +42,18 @@ class { '::gdash::vhost' :
   require          => Package['libapache2-mod-passenger']
 }						
 ```
+
+Installing multiple Gdashes
+----------------------------
+After installing gdash and setup-ing the first gdash, to install extra ones:
+
+```puppet
+gdash::setup { 'default':
+    gdashroot    => 'graphite.example.com',
+    graphitehost => '/var/www/gdash/second',
+  }
+``` 
+
 
 TODO
 -----------------------------
