@@ -67,7 +67,7 @@ Known Issues
 
 Info
 ----
-* Author: Martín Loy  <<martin@guruhub.com.uy>
+* Author: Martín Loy  <martin@guruhub.com.uy>
 * Author: Guzmán Brasó <guzman@guruhub.com.uy>
 * Homepage: http://github.com/guruHub/puppet-gdash
 
