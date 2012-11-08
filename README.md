@@ -62,6 +62,12 @@ TODO
 
 Known Issues
 -----------------------------
-- using gdash::vhost and passenger restricts to 1 gdash per domain/subdomain and cant use subfolders
+- using gdash::vhost and passenger restricts to 1 gdash per domain/subdomain and cant use subfolders with the actual vhost.erb
+- Allthough modules figures like a fork from KrisBuytaert/puppet-gdash most code was written from scratch
 
+Info
+----
+* Author: Martín Loy  <<martin@guruhub.com.uy>
+* Author: Guzmán Brasó <guzman@guruhub.com.uy>
+* Homepage: http://github.com/guruHub/puppet-gdash
 
